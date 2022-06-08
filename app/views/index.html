@@ -2,43 +2,28 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Home – GOV.UK Prototype Kit
+  You have a file to download – GOV.UK
 {% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        Prototype your service using GOV.UK Prototype Kit
-        <span class="govuk-caption-xl">{{releaseVersion}}</span>
-      </h1>{{releaseVersion | log }}
-      <p>
-        This kit lets you rapidly create HTML prototypes of GOV.UK services.
-      </p>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">
+      You have a file to download
+    </h1>
+    <p class="govuk-body">NHS COVID Pass sent you a file to download.</p>
+    <p class="govuk-body">
+      If you’re not sure why you’ve been sent a file, or you have any questions,
+      email <a href="mailto:covid19cert.no-reply@nhs.net" class="govuk-link">covid19cert.no-reply@nhs.net</a>.
+    </p>
+    <p class="govuk-body">
+      <a href="/confirm-email" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Continue
+      </a>
+    </p>
 
-      <p>
-        It contains all you need to prototype anything from simple static pages to complex, data-driven transactions.
-      </p>
-
-      <h2 class="govuk-heading-m">About this page</h2>
-
-      <p>We recommend you add links to your prototype to this page, rather than delete it.
-        You'll find this page in the kit at '/app/views/index.html'.</p>
-
-      <p>You can change the service name by editing the file '/app/config.js'.</p>
-
-      <h2 class="govuk-heading-m">Examples and documentation</h2>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          <a href="/docs/tutorials-and-examples">Tutorials and templates</a>
-        </li>
-        <li>
-          <a href="https://design-system.service.gov.uk">GOV.UK Design System</a>
-        </li>
-      </ul>
-    </div>
   </div>
+</div>
 
 {% endblock %}

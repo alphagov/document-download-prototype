@@ -43,33 +43,11 @@
   {# Set serviceName in config.js. #}
   {{ govukHeader({
     homepageUrl: "/",
-    serviceName: serviceName,
-    serviceUrl: "/",
     containerClasses: "govuk-width-container"
   }) }}
 {% endblock %}
 
 {% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
-
-{% if useAutoStoreData %}
-  {% block footer %}
-    {{ govukFooter({
-      meta: {
-        items: [
-          {
-            href: "https://govuk-prototype-kit.herokuapp.com/",
-            text: "GOV.UK Prototype Kit " + releaseVersion
-          },
-          {
-            href: "/prototype-admin/clear-data",
-            text: "Clear data"
-          }
-        ],
-        visuallyHiddenTitle: "Footer links"
-      }
-    }) }}
-  {% endblock %}
-{% endif %}
 
 {% block bodyEnd %}
   {% block scripts %}
