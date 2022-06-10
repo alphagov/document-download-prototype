@@ -10,19 +10,13 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">
-      You have a file to download
+      Prototype home
     </h1>
-    <p class="govuk-body">NHS COVID Pass sent you a file to download.</p>
-    <p class="govuk-body">
-      If you’re not sure why you’ve been sent a file, or you have any questions,
-      email <a href="mailto:covid19cert.no-reply@nhs.net" class="govuk-link">covid19cert.no-reply@nhs.net</a>.
-    </p>
-    <p class="govuk-body">
-      <a href="/confirm-email" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Continue
-      </a>
-    </p>
-
+    <ul class="govuk-list govuk-list--bullet govuk-!-font-size-24">
+      {% for id, details in downloadsEntries %}
+        <li><a class="govuk-link" href="/d/{{ id }}">{{ details.serviceName }}</a></li>
+      {% endfor %}
+    </ul>
   </div>
 </div>
 

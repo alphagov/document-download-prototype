@@ -1,0 +1,39 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Download your file
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">
+      Before you can download your file
+    </h1>
+
+    <p class="govuk-body">
+      We need to check your email address.
+    </p>
+
+    {{ govukInput({
+      label: {
+        text: "Email address",
+        isPageHeading: true
+      },
+      id: "email-address",
+      name: "email-address"
+    }) }}
+
+    {{ govukButton({
+      text: "Continue",
+      href: "/download/" + id
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}

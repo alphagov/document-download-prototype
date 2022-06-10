@@ -3,7 +3,8 @@
 // Note: prototype config can be overridden using environment variables (eg on heroku)
 
 module.exports = {
-  // Service name used in header. Eg: 'Renew your passport'
+
+  // Service name used in header. Not applicable to this prototype
   serviceName: '',
 
   // Default port that prototype runs on

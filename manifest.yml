@@ -1,0 +1,6 @@
+---
+applications:
+- name: download
+  env:
+    USERNAME: download
+    PASSWORD: download
