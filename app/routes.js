@@ -1,6 +1,7 @@
 const { application } = require('express')
 const express = require('express')
 const router = express.Router()
+const fs = require('fs');
 
 
 const downloads = {
@@ -15,6 +16,26 @@ const downloads = {
       file: 'example.pdf'
     }
 };
+
+function emailConfirmationRequired(value) {
+    const filename = 'email-confirmation.txt';
+
+    if (value !== undefined) {
+        try {
+            fs.writeFileSync(filename, value);
+        } catch (err) {
+            console.log(value, err);
+        }
+    }
+
+    try {
+        return fs.readFileSync(filename);
+    } catch (err) {
+        console.log(err);
+        return 'false'
+    }
+}
+
 
 function pageWithConfig(req, res, htmlFile) {
     if (!('id' in req.params) || !(req.params.id in downloads)) {
@@ -35,9 +56,15 @@ router.get('/', function (req, res) {
     return res.render(
         'index.html',
         {
-            downloadsEntries: Object.entries(downloads)
+            downloadsEntries: Object.entries(downloads),
+            emailConfirmation: emailConfirmationRequired()
         }
     )
+})
+
+router.post('/', function (req, res) {
+    emailConfirmationRequired(req.session.data['email-confirmation'])
+    return res.redirect('/');
 })
 
 router.get('/d/:id', function (req, res) {
@@ -45,6 +72,9 @@ router.get('/d/:id', function (req, res) {
 })
 
 router.get('/confirm-email/:id', function (req, res) {
+    if (emailConfirmationRequired() == 'false') {
+        return res.redirect('/download/' + req.params.id)
+    }
     return pageWithConfig(req, res, 'confirm-email.html');
 })
 

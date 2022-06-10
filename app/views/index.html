@@ -17,6 +17,38 @@
         <li><a class="govuk-link" href="/d/{{ id }}">{{ details.serviceName }}</a></li>
       {% endfor %}
     </ul>
+
+    {% from "govuk/components/radios/macro.njk" import govukRadios %}
+    <form method="post" action="/">
+      {{ govukRadios({
+        idPrefix: "email-confirmation",
+        name: "email-confirmation",
+        fieldset: {
+          legend: {
+            text: "Require confirmation of email address",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "true",
+            text: "Yes",
+            checked: (emailConfirmation == "true")
+          },
+          {
+            value: "false",
+            text: "No",
+            checked: (emailConfirmation == "false")
+          }
+        ]
+      }) }}
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+      {{ govukButton({
+        text: "Save"
+      }) }}
+    </form>
   </div>
 </div>
 
