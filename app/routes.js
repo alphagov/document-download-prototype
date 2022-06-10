@@ -6,11 +6,13 @@ const router = express.Router()
 const downloads = {
     'cpPGhWp9GLczhj5XOZPaQg==': {
       serviceName: 'NHS COVID Pass',
-      replyToAddress: 'covid19cert.no-reply@nhs.net'
+      replyToAddress: 'covid19cert.no-reply@nhs.net',
+      file: 'example.pdf'
     },
     'ppH6o2PUlOesyZCBxxLfNA==': {
       serviceName: 'Passport appointment',
-      replyToAddress: 'passport-appointment-bookings@homeoffice.gov.uk'
+      replyToAddress: 'passport-appointment-bookings@homeoffice.gov.uk',
+      file: 'example.pdf'
     }
 };
 

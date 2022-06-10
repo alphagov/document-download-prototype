@@ -1,6 +1,6 @@
 ---
 applications:
-- name: download
+- name: documents
   env:
-    USERNAME: download
-    PASSWORD: download
+    USERNAME: documents
+    PASSWORD: documents
