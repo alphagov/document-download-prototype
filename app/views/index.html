@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  You have a file to download – GOV.UK
+  Prototype home – GOV.UK
 {% endblock %}
 
 {% block content %}
@@ -12,9 +12,12 @@
     <h1 class="govuk-heading-l">
       Prototype home
     </h1>
-    <ul class="govuk-list govuk-list--bullet govuk-!-font-size-24">
       {% for id, details in downloadsEntries %}
-        <li><a class="govuk-link" href="/d/{{ id }}">{{ details.serviceName }}</a></li>
+      <h2 class="govuk-heading-m">{{ details.serviceName }}</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a class="govuk-link" href="https://{{ details.startPage }}">Start page</a></li>
+          <li><a class="govuk-link" href="/d/{{ id }}">Download pages</a></li>
+        </ul>
       {% endfor %}
     </ul>
 
@@ -27,7 +30,7 @@
           legend: {
             text: "Require confirmation of email address",
             isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
+            classes: "govuk-fieldset__legend--m"
           }
         },
         items: [

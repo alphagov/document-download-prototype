@@ -7,11 +7,13 @@ const fs = require('fs');
 const downloads = {
     'cpPGhWp9GLczhj5XOZPaQg==': {
       serviceName: 'NHS COVID Pass',
+      startPage: 'covid-pass.cloudapps.digital',
       replyToAddress: 'covid19cert.no-reply@nhs.net',
       file: 'example.pdf'
     },
     'ppH6o2PUlOesyZCBxxLfNA==': {
       serviceName: 'Passport appointment',
+      startPage: 'passports.cloudapps.digital',
       replyToAddress: 'passport-appointment-bookings@homeoffice.gov.uk',
       file: 'example.pdf'
     }
