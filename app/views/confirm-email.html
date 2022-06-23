@@ -31,6 +31,24 @@
 
     {% endif %}
 
+    {% if errors == 'wrongEmail' %}
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Wrong email address",
+            href: "#email-address"
+          }
+        ]
+      }) }}
+
+      {% set inlineErrorMessage = {
+        text: "Wrong email address"
+      } %}
+
+    {% endif %}
+
     <h1 class="govuk-heading-l">
       Before you can download your file
     </h1>

@@ -2,6 +2,7 @@ const { application } = require('express')
 const express = require('express')
 const router = express.Router()
 const fs = require('fs');
+const md5 = require('md5');
 
 
 const downloads = {
@@ -63,7 +64,8 @@ router.get('/', function (req, res) {
         {
             downloadsEntries: Object.entries(downloads),
             emailConfirmation: config('emailConfirmationRequired'),
-            fileAvailable: config('fileAvailable')
+            fileAvailable: config('fileAvailable'),
+            emailAddressHashes: config('emailAddressHashes')
         }
     )
 })
@@ -71,6 +73,7 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
     config('emailConfirmationRequired', req.session.data['email-confirmation']);
     config('fileAvailable', req.session.data['file-available']);
+    config('emailAddressHashes', req.session.data['email-address-hashes']);
     return res.redirect('/');
 })
 
@@ -90,9 +93,14 @@ router.get('/confirm-email/:id', function (req, res) {
 
 router.post('/confirm-email/:id', function (req, res) {
     emailAddress = req.body['email-address']
+    hash = md5(emailAddress).substring(0, 5);
 
     if (!emailAddress.match(emailRegex)) {
         return pageWithConfig(req, res, 'confirm-email.html', 'badEmail');
+    }
+
+    if (!config('emailAddressHashes').includes(hash)) {
+        return pageWithConfig(req, res, 'confirm-email.html', 'wrongEmail');
     }
 
     return res.redirect('/download/' + req.params.id)

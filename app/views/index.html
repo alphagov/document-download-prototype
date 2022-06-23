@@ -71,6 +71,22 @@
         ]
       }) }}
 
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+      {{ govukTextarea({
+        name: "email-address-hashes",
+        id: "email-address-hashes",
+        label: {
+          text: "Hashes of allowed email addresses",
+          classes: "govuk-label--m",
+          isPageHeading: true
+        },
+        hint: {
+          html: "Add more email addresses by putting the first 5 chars of the MD5 hash in this box"
+        },
+        value: emailAddressHashes
+      }) }}
+
       {% from "govuk/components/button/macro.njk" import govukButton %}
 
       {{ govukButton({
