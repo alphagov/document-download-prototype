@@ -1,5 +1,6 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% extends "layout.html" %}
 
@@ -11,6 +12,25 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+
+    {% if errors == 'badEmail' %}
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Not valid email address",
+            href: "#email-address"
+          }
+        ]
+      }) }}
+
+      {% set inlineErrorMessage = {
+        text: "Not valid email address"
+      } %}
+
+    {% endif %}
+
     <h1 class="govuk-heading-l">
       Before you can download your file
     </h1>
@@ -19,19 +39,21 @@
       We need to check your email address.
     </p>
 
-    {{ govukInput({
-      label: {
-        text: "Email address",
-        isPageHeading: true
-      },
-      id: "email-address",
-      name: "email-address"
-    }) }}
+    <form method="post">
+      {{ govukInput({
+        label: {
+          text: "Email address",
+          isPageHeading: true
+        },
+        id: "email-address",
+        name: "email-address",
+        errorMessage: inlineErrorMessage
+      }) }}
 
-    {{ govukButton({
-      text: "Continue",
-      href: "/download/" + id
-    }) }}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
 
   </div>
 </div>

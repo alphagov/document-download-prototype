@@ -19,6 +19,8 @@ const downloads = {
     }
 };
 
+const emailRegex = /^[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~\-]+@([^.@][^@\s]+)$/;
+
 function config(key, value, defaultValue) {
     const filename = key + '.txt';
 
@@ -39,7 +41,7 @@ function config(key, value, defaultValue) {
 }
 
 
-function pageWithConfig(req, res, htmlFile) {
+function pageWithConfig(req, res, htmlFile, errors) {
     if (!('id' in req.params) || !(req.params.id in downloads)) {
         return res.sendStatus(404)
     }
@@ -47,7 +49,8 @@ function pageWithConfig(req, res, htmlFile) {
         htmlFile,
         {
             id: req.params.id,
-            details: downloads[req.params.id]
+            details: downloads[req.params.id],
+            errors: errors
         }
     )
 }
@@ -83,6 +86,16 @@ router.get('/confirm-email/:id', function (req, res) {
         return res.redirect('/download/' + req.params.id)
     }
     return pageWithConfig(req, res, 'confirm-email.html');
+})
+
+router.post('/confirm-email/:id', function (req, res) {
+    emailAddress = req.body['email-address']
+
+    if (!emailAddress.match(emailRegex)) {
+        return pageWithConfig(req, res, 'confirm-email.html', 'badEmail');
+    }
+
+    return res.redirect('/download/' + req.params.id)
 })
 
 router.get('/unavailable/:id', function (req, res) {
