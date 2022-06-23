@@ -19,14 +19,14 @@
         titleText: "There is a problem",
         errorList: [
           {
-            text: "Not valid email address",
+            text: "Not a valid email address",
             href: "#email-address"
           }
         ]
       }) }}
 
       {% set inlineErrorMessage = {
-        text: "Not valid email address"
+        text: "Not a valid email address"
       } %}
 
     {% endif %}
@@ -50,11 +50,11 @@
     {% endif %}
 
     <h1 class="govuk-heading-l">
-      Before you can download your file
+      Confirm your email address
     </h1>
 
     <p class="govuk-body">
-      We need to check your email address.
+      For security, we need to confirm your email address before you can download the file.
     </p>
 
     <form method="post">
