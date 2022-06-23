@@ -42,17 +42,19 @@ function config(key, value, defaultValue) {
 }
 
 
-function pageWithConfig(req, res, htmlFile, errors) {
+function pageWithConfig(req, res, htmlFile, additionalProperties) {
     if (!('id' in req.params) || !(req.params.id in downloads)) {
         return res.sendStatus(404)
     }
+
+    let properties = {
+        id: req.params.id,
+        details: downloads[req.params.id]
+    }
+
     return res.render(
         htmlFile,
-        {
-            id: req.params.id,
-            details: downloads[req.params.id],
-            errors: errors
-        }
+        Object.assign(properties, (additionalProperties || {}))
     )
 }
 
@@ -96,11 +98,17 @@ router.post('/confirm-email/:id', function (req, res) {
     hash = md5(emailAddress).substring(0, 5);
 
     if (!emailAddress.match(emailRegex)) {
-        return pageWithConfig(req, res, 'confirm-email.html', 'badEmail');
+        return pageWithConfig(req, res, 'confirm-email.html', {
+            emailAddress: emailAddress,
+            errors: 'badEmail'
+        });
     }
 
     if (!config('emailAddressHashes').includes(hash)) {
-        return pageWithConfig(req, res, 'confirm-email.html', 'wrongEmail');
+        return pageWithConfig(req, res, 'confirm-email.html', {
+            emailAddress: emailAddress,
+            errors: 'wrongEmail'
+        });
     }
 
     return res.redirect('/download/' + req.params.id)
