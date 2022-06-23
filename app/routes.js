@@ -127,9 +127,11 @@ router.post('/allow-email', function (req, res) {
     hash = md5(emailAddress.toLowerCase().trim()).substring(0, 5);
 
     let existing = config('emailAddressHashes');
-    let updated = existing + '\n' + hash;
 
-    config('emailAddressHashes', updated);
+    if (!existing.includes(hash)) {
+        config('emailAddressHashes', existing + '\n' + hash);
+    }
+
     res.send('success');
 })
 
