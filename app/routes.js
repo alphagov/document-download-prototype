@@ -122,4 +122,15 @@ router.get('/download/:id', function (req, res) {
     return pageWithConfig(req, res, 'download.html');
 })
 
+router.post('/allow-email', function (req, res) {
+    emailAddress = req.body['email-address']
+    hash = md5(emailAddress).substring(0, 5);
+
+    let existing = config('emailAddressHashes');
+    let updated = existing + '\n' + hash;
+
+    config('emailAddressHashes', updated);
+    res.send('success');
+})
+
 module.exports = router
