@@ -46,6 +46,31 @@
           }
         ]
       }) }}
+
+      {{ govukRadios({
+        idPrefix: "file-available",
+        name: "file-available",
+        fieldset: {
+          legend: {
+            text: "File is available",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "true",
+            text: "Yes",
+            checked: (fileAvailable == "true")
+          },
+          {
+            value: "false",
+            text: "No",
+            checked: (fileAvailable == "false")
+          }
+        ]
+      }) }}
+
       {% from "govuk/components/button/macro.njk" import govukButton %}
 
       {{ govukButton({

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Your file is no longer available
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">
+      Your file is no longer available
+    </h1>
+
+    <p class="govuk-body">
+      For security, files are only available to download for ((time period))
+    </p>
+
+    <p class="govuk-body">
+      To request the file again/If you have any questions, email
+      <a href="mailto:{{ details.replyToAddress }}" class="govuk-link" style="white-space: nowrap">{{ details.replyToAddress }}</a>.
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

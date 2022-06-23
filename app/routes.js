@@ -19,8 +19,8 @@ const downloads = {
     }
 };
 
-function emailConfirmationRequired(value) {
-    const filename = 'email-confirmation.txt';
+function config(key, value, defaultValue) {
+    const filename = key + '.txt';
 
     if (value !== undefined) {
         try {
@@ -34,7 +34,7 @@ function emailConfirmationRequired(value) {
         return fs.readFileSync(filename);
     } catch (err) {
         console.log(err);
-        return 'false'
+        return 'true'
     }
 }
 
@@ -59,13 +59,15 @@ router.get('/', function (req, res) {
         'index.html',
         {
             downloadsEntries: Object.entries(downloads),
-            emailConfirmation: emailConfirmationRequired()
+            emailConfirmation: config('emailConfirmationRequired'),
+            fileAvailable: config('fileAvailable')
         }
     )
 })
 
 router.post('/', function (req, res) {
-    emailConfirmationRequired(req.session.data['email-confirmation'])
+    config('emailConfirmationRequired', req.session.data['email-confirmation']);
+    config('fileAvailable', req.session.data['file-available']);
     return res.redirect('/');
 })
 
@@ -74,10 +76,17 @@ router.get('/d/:id', function (req, res) {
 })
 
 router.get('/confirm-email/:id', function (req, res) {
-    if (emailConfirmationRequired() == 'false') {
+    if (config('fileAvailable') == 'false') {
+        return res.redirect('/unavailable/' + req.params.id)
+    }
+    if (config('emailConfirmationRequired') == 'false') {
         return res.redirect('/download/' + req.params.id)
     }
     return pageWithConfig(req, res, 'confirm-email.html');
+})
+
+router.get('/unavailable/:id', function (req, res) {
+    return pageWithConfig(req, res, 'unavailable.html');
 })
 
 router.get('/download/:id', function (req, res) {
