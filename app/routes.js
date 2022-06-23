@@ -95,7 +95,7 @@ router.get('/confirm-email/:id', function (req, res) {
 
 router.post('/confirm-email/:id', function (req, res) {
     emailAddress = req.body['email-address']
-    hash = md5(emailAddress).substring(0, 5);
+    hash = md5(emailAddress.toLowerCase().trim()).substring(0, 5);
 
     if (!emailAddress.match(emailRegex)) {
         return pageWithConfig(req, res, 'confirm-email.html', {
@@ -124,7 +124,7 @@ router.get('/download/:id', function (req, res) {
 
 router.post('/allow-email', function (req, res) {
     emailAddress = req.body['email-address']
-    hash = md5(emailAddress).substring(0, 5);
+    hash = md5(emailAddress.toLowerCase().trim()).substring(0, 5);
 
     let existing = config('emailAddressHashes');
     let updated = existing + '\n' + hash;
