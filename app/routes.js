@@ -9,13 +9,13 @@ const downloads = {
       serviceName: 'NHS COVID Pass',
       startPage: 'covid-pass.cloudapps.digital',
       replyToAddress: 'covid19cert.no-reply@nhs.net',
-      file: 'example.pdf'
+      file: 'COVID-pass_Notify-user-research.pdf'
     },
     'ppH6o2PUlOesyZCBxxLfNA==': {
       serviceName: 'Passport appointment',
       startPage: 'passports.cloudapps.digital',
       replyToAddress: 'passport-appointment-bookings@homeoffice.gov.uk',
-      file: 'example.pdf'
+      file: 'Passport-application-form_Notify-user-research.pdf'
     }
 };
 
