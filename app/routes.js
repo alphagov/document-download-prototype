@@ -75,7 +75,10 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
     config('emailConfirmationRequired', req.session.data['email-confirmation']);
     config('fileAvailable', req.session.data['file-available']);
-    config('emailAddressHashes', req.session.data['email-address-hashes']);
+    let emailAddressHashes = config('emailAddressHashes') + '\n' + req.session.data['email-address-hashes'];
+    let allHashes = emailAddressHashes.split('\n').map(hash => hash.trim());
+    let uniqueHashes = [...new Set(allHashes)]
+    config('emailAddressHashes', uniqueHashes.join('\n'));
     return res.redirect('/');
 })
 
