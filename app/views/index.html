@@ -15,7 +15,9 @@
       {% for id, details in downloadsEntries %}
       <h2 class="govuk-heading-m">{{ details.serviceName }}</h2>
         <ul class="govuk-list govuk-list--bullet">
+          {% if details.startPage %}
           <li><a class="govuk-link" href="https://{{ details.startPage }}">Start page</a></li>
+          {% endif %}
           <li><a class="govuk-link" href="/d/{{ id }}">Download pages</a></li>
         </ul>
       {% endfor %}

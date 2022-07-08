@@ -17,7 +17,13 @@ const downloads = {
       startPage: 'passports.cloudapps.digital',
       replyToAddress: 'passport-appointment-bookings@homeoffice.gov.uk',
       file: 'Passport-application-form_Notify-user-research.pdf'
-    }
+    },
+    'wbAOXXvSgc3iPJOhhZJMjg==': {
+        serviceName: 'Street trading licence – Bristol City Council',
+        startPage: null,
+        replyToAddress: 'licencing@bristol.gov.uk',
+        file: 'Street-trading-licence_Notify-user-research.pdf'
+      }
 };
 
 const emailRegex = /^[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~\-]+@([^.@][^@\s]+)$/;
