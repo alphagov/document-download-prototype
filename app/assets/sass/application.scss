@@ -19,3 +19,12 @@ $govuk-assets-path: '/govuk/assets/';
 @import "patterns/task-list";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+.govuk-notification-banner {
+    border-color: $govuk-error-colour;
+    background: $govuk-error-colour;
+}
+
+.govuk-notification-banner__header {
+    color: $govuk-error-colour;
+}

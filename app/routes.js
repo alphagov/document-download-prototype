@@ -116,7 +116,7 @@ router.post('/confirm-email/:id', function (req, res) {
     if (!config('emailAddressHashes').includes(hash)) {
         return pageWithConfig(req, res, 'confirm-email.html', {
             emailAddress: emailAddress,
-            errors: 'wrongEmail'
+            wrongEmail: true
         });
     }
 
