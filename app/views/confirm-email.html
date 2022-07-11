@@ -31,21 +31,26 @@
 
     {% endif %}
 
-    {% if errors == 'wrongEmail' %}
+    {% if wrongEmail %}
 
-      {{ govukErrorSummary({
-        titleText: "There is a problem",
-        errorList: [
-          {
-            text: "Wrong email address",
-            href: "#email-address"
-          }
-        ]
-      }) }}
-
-      {% set inlineErrorMessage = {
-        text: "Wrong email address"
-      } %}
+      <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Error
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <h3 class="govuk-notification-banner__heading">
+            Enter the email address this link was sent to
+          </h3>
+          <p class="govuk-body">
+            We’re just checking it’s the same email address.
+          </p>
+          <p class="govuk-body">
+            We will not send any extra emails.
+          </p>
+        </div>
+      </div>
 
     {% endif %}
 
