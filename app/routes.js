@@ -50,7 +50,7 @@ function config(key, value, defaultValue) {
 
 function makeHash(emailAddress, domain) {
     return md5(
-        emailAddress.toLowerCase().trim() + ':' + domain.toLowerCase().trim()
+        String(emailAddress).toLowerCase().trim() + ':' + String(domain).toLowerCase().trim()
     ).substring(0, 5)
 }
 
