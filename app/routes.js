@@ -48,6 +48,13 @@ function config(key, value, defaultValue) {
 }
 
 
+function makeHash(emailAddress, domain) {
+    return md5(
+        emailAddress.toLowerCase().trim() + ':' + domain.toLowerCase().trim()
+    ).substring(0, 5)
+}
+
+
 function pageWithConfig(req, res, htmlFile, additionalProperties) {
     if (!('id' in req.params) || !(req.params.id in downloads)) {
         return res.sendStatus(404)
@@ -104,7 +111,7 @@ router.get('/confirm-email/:id', function (req, res) {
 
 router.post('/confirm-email/:id', function (req, res) {
     emailAddress = req.body['email-address']
-    hash = md5(emailAddress.toLowerCase().trim()).substring(0, 5);
+    hash = makeHash(emailAddress, downloads[req.params.id]['startPage'])
 
     if (!emailAddress.match(emailRegex)) {
         return pageWithConfig(req, res, 'confirm-email.html', {
@@ -133,7 +140,8 @@ router.get('/download/:id', function (req, res) {
 
 router.post('/allow-email', function (req, res) {
     emailAddress = req.body['email-address']
-    hash = md5(emailAddress.toLowerCase().trim()).substring(0, 5);
+    domain = req.body['domain']
+    hash = makeHash(emailAddress, domain)
 
     let existing = config('emailAddressHashes');
 
