@@ -20,7 +20,7 @@ const downloads = {
     },
     'wbAOXXvSgc3iPJOhhZJMjg==': {
         serviceName: 'Example Service',
-        startPage: null,
+        startPage: 'https://www.notifications.service.gov.uk/services/d6aa2c68-a2d9-4437-ab19-3ae8eb202553/templates/040f606b-3ca6-43d3-a8d9-f0aeda300430',
         replyToAddress: 'support@example.gov.uk',
         file: 'example-notify-file-sent-by-email.pdf'
     },
@@ -80,8 +80,12 @@ function pageWithConfig(req, res, htmlFile, additionalProperties) {
 // Add your routes here - above the module.exports line
 
 router.get('/', function (req, res) {
+    res.status(404).send();
+})
+
+router.get('/backstage', function (req, res) {
     return res.render(
-        'index.html',
+        'backstage.html',
         {
             downloadsEntries: Object.entries(downloads),
             emailConfirmation: config('emailConfirmationRequired'),
@@ -91,7 +95,7 @@ router.get('/', function (req, res) {
     )
 })
 
-router.post('/', function (req, res) {
+router.post('/backstage', function (req, res) {
     config('emailConfirmationRequired', req.session.data['email-confirmation']);
     config('fileAvailable', req.session.data['file-available']);
     let emailAddressHashes = config('emailAddressHashes') + '\n' + req.session.data['email-address-hashes'];
