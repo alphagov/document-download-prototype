@@ -19,11 +19,17 @@ const downloads = {
       file: 'Passport-application-form_Notify-user-research.pdf'
     },
     'wbAOXXvSgc3iPJOhhZJMjg==': {
+        serviceName: 'Example Service',
+        startPage: null,
+        replyToAddress: 'support@example.gov.uk',
+        file: 'example-notify-file-sent-by-email.pdf'
+    },
+    'eApbJGChOpTNAXqZUeL2kw': {
         serviceName: 'Street trading licence – Bristol City Council',
         startPage: null,
         replyToAddress: 'licencing@bristol.gov.uk',
         file: 'Street-trading-licence_Notify-user-research.pdf'
-      }
+    }
 };
 
 const emailRegex = /^[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~\-]+@([^.@][^@\s]+)$/;
