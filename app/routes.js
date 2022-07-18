@@ -20,7 +20,7 @@ const downloads = {
     },
     'wbAOXXvSgc3iPJOhhZJMjg==': {
         serviceName: 'Example Service',
-        startPage: 'https://www.notifications.service.gov.uk/services/d6aa2c68-a2d9-4437-ab19-3ae8eb202553/templates/040f606b-3ca6-43d3-a8d9-f0aeda300430',
+        startPage: 'www.notifications.service.gov.uk/services/d6aa2c68-a2d9-4437-ab19-3ae8eb202553/templates/040f606b-3ca6-43d3-a8d9-f0aeda300430',
         replyToAddress: 'support@example.gov.uk',
         file: 'example-notify-file-sent-by-email.pdf'
     },
