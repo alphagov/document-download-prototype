@@ -79,10 +79,6 @@ function pageWithConfig(req, res, htmlFile, additionalProperties) {
 
 // Add your routes here - above the module.exports line
 
-router.get('/', function (req, res) {
-    res.status(404).send();
-})
-
 router.get('/backstage', function (req, res) {
     return res.render(
         'backstage.html',
